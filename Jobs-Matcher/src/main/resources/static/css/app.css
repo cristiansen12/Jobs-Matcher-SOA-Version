@@ -1,0 +1,91 @@
+.menu-list{
+    padding-left: 30px;
+    padding-top: 20px;
+}
+.home-section{
+    float:left;
+    width: 10%;
+}
+.section{
+    margin-left: 10%;
+    float:left;
+}
+.photo{
+    padding-right: 5px;
+}
+.top-buffer{
+	margin-top:20px;
+}
+.left-buffer{
+  margin-left:100px;
+}
+.left-small-buffer{
+  margin-left:50px;
+}
+
+.right-small-inner-buffer{
+  padding-right:50px;
+}
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+}
+
+textarea { resize:vertical; }
+
+/*************************
+EXAMPLES 2-7 BELOW 
+**************************/
+
+/* EXAMPLE 2 (larger logo) - simply adjust top bottom padding to make logo larger */
+
+.example2 .navbar-brand>img {
+  padding: 7px 15px;
+}
+
+
+/* EXAMPLE 3
+
+line height is 20px by default so add 30px top and bottom to equal the new .navbar-brand 80px height  */
+
+.navbar-brand {
+  height: 100px;
+}
+
+.nav >li >a {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* CSS Transform Align Navbar Brand Text ... This could also be achieved with table / table-cells */
+.navbar-alignit .navbar-header {
+	  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  height: 50px;
+}
+.navbar-alignit .navbar-brand {
+	top: 50%;
+	display: block;
+	position: relative;
+	height: auto;
+	transform: translate(0,-50%);
+	margin-right: 15px;
+  margin-left: 15px;
+}
+
+
+
+
+
+.navbar-nav>li>.dropdown-menu {
+	z-index: 9999;
+}
+
+body {
+  font-family: "Lato";
+}

@@ -1,0 +1,9 @@
+server:
+  port: 8083
+  contextPath: /DBServiceRestApi
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost/dbservice
+        username: root
+        password: root
