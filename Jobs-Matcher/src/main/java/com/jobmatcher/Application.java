@@ -1,6 +1,7 @@
 package com.jobmatcher;
 
 import com.jobmatcher.service.UploadCVService;
+import com.jobmatcher.service.UploadLinkedinService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,6 +33,9 @@ public class Application extends SpringBootServletInitializer {
             FileSystemUtils.deleteRecursively(new File(UploadCVService.PATH));
 
             Files.createDirectory(Paths.get(UploadCVService.PATH));
+            FileSystemUtils.deleteRecursively(new File(UploadLinkedinService.PATH));
+
+            Files.createDirectory(Paths.get(UploadLinkedinService.PATH));
         };
     }
 }

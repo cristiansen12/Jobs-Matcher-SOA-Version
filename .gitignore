@@ -1,5 +1,5 @@
 */.idea
 */*.iml
 */target
-*/uploadLinkedin/*
-*/uploadCV/*
+Jobs-Matcher/uploadLinkedin/*.pdf
+Jobs-Matcher/uploadCV/*.pdf

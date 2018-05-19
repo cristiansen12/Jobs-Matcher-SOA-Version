@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface UploadCVService {
 
-    String PATH = "C:\\Users\\gevlad\\Documents\\Stuff\\University\\Jobs-Matcher\\uploadCV";
+    String PATH = "uploadCV";
 
     String save(MultipartFile file);
 }
