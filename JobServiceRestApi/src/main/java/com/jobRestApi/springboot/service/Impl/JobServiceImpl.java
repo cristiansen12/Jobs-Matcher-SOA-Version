@@ -44,7 +44,7 @@ public class JobServiceImpl implements JobService{
     private String getKeyWords(String words){
 
         String[] wordsInCV = words.split(",");
-        String[] connectors = {"present", "a", "about", "also", "an", "and", "are", "as", "as soon", "at", "by", "but", "for", "from", "if", "in", "is", "just", "of", "on", "or", "than", "the", "then", "to", "when", "while", "with", "000"};
+        String[] connectors = {"present", "used", "project", "Degree", "order", "a", "about", "also", "an", "and", "are", "as", "as soon", "at", "by", "but", "for", "from", "if", "in", "is", "just", "of", "on", "or", "than", "the", "then", "to", "when", "while", "with", "000"};
         List<String> connectorList = Arrays.asList(connectors);
 
         HashMap<String, Integer> wordsCounter = new HashMap<>();
@@ -61,7 +61,7 @@ public class JobServiceImpl implements JobService{
         List<Map.Entry<String, Integer>> l = new ArrayList(wordsCounter.entrySet());
 
         Collections.sort(l, new ValueComparator());
-        l = l.subList(0,3);
+        l = l.subList(0,5);
 
         String result = "";
         for(int i=0; i<l.size() - 1; i++) {
@@ -105,6 +105,7 @@ public class JobServiceImpl implements JobService{
         System.out.println("Testing getJob API for profile----------");
         RestTemplate restTemplateJS = new RestTemplate();
         Profile profile = restTemplateJS.getForObject(profileUrl, Profile.class);
+        System.out.println("\nContent: " + profile.getContent() );
         return profile.getContent();
 
     }
@@ -116,7 +117,7 @@ public class JobServiceImpl implements JobService{
         System.out.println(keyWords);
 
         //This will be in MatchingService *****
-        String url = "https://authenticjobs.com/api/?api_key=d3bc95973199abbd28fd6b587e09645d&method=aj.jobs.search&keywords="+keyWords+"&format=json&perpage=20";
+        String url = "https://authenticjobs.com/api/?api_key=d3bc95973199abbd28fd6b587e09645d&method=aj.jobs.search&keywords="+keyWords+"&format=json&perpage=5";
         //This will be in MatchingService *****
 
         String result = "";
@@ -186,7 +187,7 @@ public class JobServiceImpl implements JobService{
                 if (jobs.get(i).getId().equals(maxEntry.getKey())){
                     String description = Jsoup.parse(jobs.get(i).getDescription()).text();
                     result += "{ \"company\": \"" + jobs.get(i).getCompany() + "\" , \""
-                            + "titleOfJob\": \"" + jobs.get(i).getTitle() + "\" , \""
+                            + "title\": \"" + jobs.get(i).getTitle() + "\" , \""
                             + "description\": \"" + description + "\"}";
                     break;
                 }

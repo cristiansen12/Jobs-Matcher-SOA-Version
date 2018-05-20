@@ -47,6 +47,10 @@ public class MainServiceImpl implements MainService {
         Job job = restTemplateJS.getForObject(JOB_REST_SERVICE_URL+"/job/"+profileText[0], Job.class);
         System.out.println(job.toString());
 
+        result += "{ \"company\": \"" + job.getCompany() + "\" , \""
+                + "titleOfJob\": \"" + job.getTitle() + "\" , \""
+                + "dscription\": \"" + job.getDescription() + "\"}";
+
         return result;
     }
 

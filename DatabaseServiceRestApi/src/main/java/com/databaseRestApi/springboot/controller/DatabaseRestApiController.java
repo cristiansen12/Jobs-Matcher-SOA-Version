@@ -97,7 +97,6 @@ public class DatabaseRestApiController {
 
 		currentUser.setName(user.getName());
 		currentUser.setAge(user.getAge());
-		currentUser.setSalary(user.getSalary());
 
 		userService.updateUser(currentUser);
 		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
@@ -239,13 +238,13 @@ public class DatabaseRestApiController {
 
 	// -------------------Retrieve Single Profile------------------------------------------
 
-	@RequestMapping(value = "/profile/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<?> getProfile(@PathVariable("userId") long userId) {
-		logger.info("Fetching Profile with userId {}", userId);
-		Profile profile = profileService.findByUserId(userId);
+	@RequestMapping(value = "/profile/{user_id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getProfile(@PathVariable("user_id") long user_id) {
+		logger.info("Fetching Profile with user_id {}", user_id);
+		Profile profile = profileService.findByUserId(user_id);
 		if (profile == null) {
-			logger.error("Profile with userId {} not found.", userId);
-			return new ResponseEntity(new CustomErrorType("Profile with userId " + userId
+			logger.error("Profile with user_id {} not found.", user_id);
+			return new ResponseEntity(new CustomErrorType("Profile with user_id " + user_id
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Profile>(profile, HttpStatus.OK);
@@ -258,29 +257,29 @@ public class DatabaseRestApiController {
 		logger.info("Creating Profile : {}", profile);
 
 		if (profileService.isProfileExist(profile)) {
-			logger.error("Unable to create. A Profile with userId {} already exist", profile.getUserId());
-			return new ResponseEntity(new CustomErrorType("Unable to create. A Profile with userId " +
+			logger.error("Unable to create. A Profile with user_id {} already exist", profile.getUserId());
+			return new ResponseEntity(new CustomErrorType("Unable to create. A Profile with user_id " +
 					profile.getUserId() + " already exist."),HttpStatus.CONFLICT);
 		}
 		profileService.saveProfile(profile);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/api/profile/{userId}").buildAndExpand(profile.getUserId()).toUri());
+		headers.setLocation(ucBuilder.path("/api/profile/{user_id}").buildAndExpand(profile.getUserId()).toUri());
 		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}
 
 
 	// ------------------- Update a Profile ------------------------------------------------
 
-	@RequestMapping(value = "/profile/{userId}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateProfile(@PathVariable("userId") long userId, @RequestBody Profile profile) {
-		logger.info("Updating Profile with userId {}", userId);
+	@RequestMapping(value = "/profile/{user_id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateProfile(@PathVariable("user_id") long user_id, @RequestBody Profile profile) {
+		logger.info("Updating Profile with user_id {}", user_id);
 
-		Profile currentProfile = profileService.findByUserId(userId);
+		Profile currentProfile = profileService.findByUserId(user_id);
 
 		if (currentProfile == null) {
-			logger.error("Unable to update. Profile with userId {} not found.", userId);
-			return new ResponseEntity(new CustomErrorType("Unable to upate. Profile with userId " + userId + " not found."),
+			logger.error("Unable to update. Profile with user_id {} not found.", user_id);
+			return new ResponseEntity(new CustomErrorType("Unable to upate. Profile with user_id " + user_id + " not found."),
 					HttpStatus.NOT_FOUND);
 		}
 
@@ -292,17 +291,17 @@ public class DatabaseRestApiController {
 
 	// ------------------- Delete a Profile-----------------------------------------
 
-	@RequestMapping(value = "/profile/{userId}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteProfile(@PathVariable("userId") long userId) {
-		logger.info("Fetching & Deleting Profile with id {}", userId);
+	@RequestMapping(value = "/profile/{user_id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteProfile(@PathVariable("user_id") long user_id) {
+		logger.info("Fetching & Deleting Profile with id {}", user_id);
 
-		Profile profile = profileService.findByUserId(userId);
+		Profile profile = profileService.findByUserId(user_id);
 		if (profile == null) {
-			logger.error("Unable to delete. Profile with id {} not found.", userId);
-			return new ResponseEntity(new CustomErrorType("Unable to delete. Profile with userId " + userId + " not found."),
+			logger.error("Unable to delete. Profile with id {} not found.", user_id);
+			return new ResponseEntity(new CustomErrorType("Unable to delete. Profile with user_id " + user_id + " not found."),
 					HttpStatus.NOT_FOUND);
 		}
-		profileService.deleteProfileById(userId);
+		profileService.deleteProfileById(user_id);
 		return new ResponseEntity<Job>(HttpStatus.NO_CONTENT);
 	}
 

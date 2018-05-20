@@ -10,13 +10,13 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long userId;
+    private long user_id;
     private String content;
 
-    public Profile() { id=0;}
+    public Profile() {}
 
-    public Profile(long userId, String content){
-        this.userId = userId;
+    public Profile(long user_id, String content){
+        this.user_id = user_id;
         this.content = content;
     }
 
@@ -29,11 +29,11 @@ public class Profile {
     }
 
     public long getUserId() {
-        return userId;
+        return user_id;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUserId(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getContent() {

@@ -23,10 +23,10 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     @Transactional
-    public Profile findByUserId(long userId) {
+    public Profile findByUserId(long user_id) {
         List<Profile> profiles = profileRepository.listAll();
         for (Profile p:profiles){
-            if (p.getUserId() == userId)
+            if (p.getUserId() == user_id)
                 return p;
         }
         return null;
@@ -41,13 +41,13 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Transactional
-    public void deleteProfileById(long userId) {
-        profileRepository.delete(this.findByUserId(userId));
+    public void deleteProfileById(long user_id) {
+        profileRepository.delete(this.findByUserId(user_id));
     }
 
     @Transactional
     public boolean isProfileExist(Profile profile) {
-        return findByUserId(profile.getUserId())!=null;
+        return false; //findByUserId(profile.getUserId())!=null;
     }
 
     @Transactional

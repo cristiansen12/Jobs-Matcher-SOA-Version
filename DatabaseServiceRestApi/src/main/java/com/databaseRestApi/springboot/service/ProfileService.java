@@ -8,13 +8,13 @@ public interface ProfileService {
 
 
 
-    Profile findByUserId(long userId);
+    Profile findByUserId(long user_id);
 
     void saveProfile(Profile profile);
 
     void updateProfile(Profile profile);
 
-    void deleteProfileById(long userId);
+    void deleteProfileById(long user_id);
 
     List<Profile> findAllProfiles();
 
